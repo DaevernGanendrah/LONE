@@ -165,6 +165,85 @@
 
 
 
+// require('dotenv').config(); // Load environment variables from .env file
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const cors = require('cors');
+// const path = require('path');
+// const Score = require('./Models/score'); // Ensure this path is correct
+
+// const app = express();
+
+// // Enable CORS
+// app.use(cors());
+
+// // Parse JSON bodies
+// app.use(express.json());
+
+// // Serve static files from the 'Client' directory
+// // // Ensure this directory structure is correct in your project
+// // app.use(express.static(path.join(__dirname, 'Client')));
+
+// // Serve static files from the 'Client' directory
+// app.use(express.static(path.join(__dirname, '..', 'Client')));
+
+// // app.get('*', (req, res) => {
+// //   res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
+// // });
+
+
+// // MongoDB URI
+// const MONGO_URI = process.env.MONGO_URI;
+
+// // Connect to MongoDB
+// mongoose.connect(MONGO_URI)
+//   .then(() => console.log('MongoDB connected'))
+//   .catch(err => console.error('MongoDB connection error:', err));
+
+// // Your other routes...
+
+// // Root endpoint to serve the main page
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
+// });
+
+// // // Fallback route for SPA (if needed)
+// // app.get('*', (req, res) => {
+// //   res.sendFile(path.join(__dirname, 'Client', 'index.html'));
+// // });
+
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
+//   });
+  
+
+// // Set the port dynamically from the environment or default to 3000
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
 const mongoose = require('mongoose');
@@ -181,41 +260,61 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from the 'Client' directory
-// // Ensure this directory structure is correct in your project
-// app.use(express.static(path.join(__dirname, 'Client')));
-
-// Serve static files from the 'Client' directory
+// Ensure this directory structure is correct in your project
 app.use(express.static(path.join(__dirname, '..', 'Client')));
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
-// });
-
 
 // MongoDB URI
 const MONGO_URI = process.env.MONGO_URI;
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Your other routes...
+// Submit score endpoint
+app.post('/submit-score', async (req, res) => {
+    try {
+        const { username, score } = req.body;
+        let highScore = await Score.findOne({ username });
+
+        if (highScore) {
+            if (score > highScore.score) {
+                highScore.score = score;
+                await highScore.save();
+            }
+        } else {
+            highScore = new Score({ username, score });
+            await highScore.save();
+        }
+
+        res.json({ message: 'Score updated', highScore });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating score', error: error });
+    }
+});
+
+// Fetch high scores endpoint
+app.get('/high-scores', async (req, res) => {
+    try {
+        const highScores = await Score.find().sort({ score: -1 }).limit(10);
+        res.json(highScores);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching high scores', error: error });
+    }
+});
 
 // Root endpoint to serve the main page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
 });
 
-// // Fallback route for SPA (if needed)
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'Client', 'index.html'));
-// });
-
+// Fallback route for all other requests
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
-  });
-  
+});
 
 // Set the port dynamically from the environment or default to 3000
 const PORT = process.env.PORT || 3000;
