@@ -19,30 +19,29 @@ let highScore = 0;
 let highScorer = 'None';
 
 
-
-
-
-
-
-
-
-
-
-
-// const isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-// if (isMobileOrTablet) {
-//     alert("GAME is only available on Desktop and Laptops.");
-//     return; // Stop further script execution
+// if (!window.location.href.endsWith('mobile_error.html')) {
+//     // Check if the user is on a mobile or tablet device
+//     const isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+//     if (isMobileOrTablet) {
+//         window.location.href = 'mobile.html'; // Redirect to the mobile error page
+//         return; // Stop further script execution
+//     }
 // }
 
 
+
 const isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-if (isMobileOrTablet) {
+
+// Check if the page has already been redirected in this session
+const redirected = sessionStorage.getItem('redirected') === 'true';
+
+if (isMobileOrTablet && !redirected) {
+    sessionStorage.setItem('redirected', 'true'); // Mark as redirected
     window.location.href = 'mobile.html'; // Redirect to the mobile error page
     return; // Stop further script execution
+} else if (!isMobileOrTablet) {
+    sessionStorage.removeItem('redirected'); // Remove the redirected flag for desktop users
 }
-
-
 
 
 // fetch('http://localhost:3000/high-scores')

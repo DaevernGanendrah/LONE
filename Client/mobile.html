@@ -4,27 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L . S . D</title>
+
     <style>
         body {
-            /* font-family: Arial, sans-serif; */
-            /* text-align: center; */
             padding: 20px;
             background-color: black;
         }
 
-        /* Shared styles for the game-over-text and score */
 .pixel-text {
-    /* font-family: monospace,;
-    color: #FF00FF; 
-    text-shadow:
-        3px 3px 0 rgb(155, 34, 34),  
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,   
-        -1px 1px 0 #000,   
-        1px 1px 0 #000;    
-    -webkit-text-stroke: 1px black; 
-    font-size: 70px;  */
-
     font-family: monospace;
     color: #ff00a2;
     text-shadow: 3px 3px 0 rgb(157, 81, 151), -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -42,61 +29,33 @@
     z-index: 10;
 }
 
-
 .game-over-text, .score {
     font-family: monospace;
-    /* color: #ee26d7;  */
-    /* text-shadow:
-        3px 3px 0 #000, 
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,   
-        -1px 1px 0 #000,  
-        1px 1px 0 #000;     */
     -webkit-text-stroke: 1px black; 
     font-size: 35px; 
     font-style: bold;
 }
 
-
 .game-over-text {
     font-family: monospace;
-    /* color: #FF00FF;  */
-    /* text-shadow:
-        3px 3px 0 #000,  
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,   
-        -1px 1px 0 #000,   
-        1px 1px 0 #000;     */
     -webkit-text-stroke: 1px black; 
     font-size: 40px; 
 }
 
 .game-under-text {
     font-family: monospace;
-    /* color: #FF00FF;  */
-    /* text-shadow:
-        3px 3px 0 #000,  
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,   
-        -1px 1px 0 #000,   
-        1px 1px 0 #000;     */
     -webkit-text-stroke: 1px black; 
     font-size: 30px; 
     text-align: left;
 }
 
 .bird {
-    width: 90%; 
-    /* height: 250px; 
-    object-fit: contain;  */
-    /* position: absolute; */
-    /* bottom: 50%; */
+    width: 75%; 
     align-items: center;
 }
 
 .footer {
     text-align: center;
-    /* padding: 10px; */
     background-color: rgb(0, 0, 0);
     color: white;
     position: fixed;
@@ -105,20 +64,16 @@
     font-family: monospace;
     left: 0;
 }
-
-
     </style>
 
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+
 </head>
 <body>
-    <!-- <h1>L . S . D</h1>
-    <p>LSD is only available on Desktop and Laptops.</p> -->
 
-    <!-- <div id="gameOverMessage" class="game-over-container"> -->
         <h1 class="game-over-text pixel-text">[L.S.D]</h1>
         <p class="game-under-text pixel-text">Lonesome Space Dogg  is only available on Desktop and Laptops. sorry.<br> Thank You.</p>
-    <!-- </div> -->
+
     <img id="bird" class="bird" src="images /MB1.png" alt="Bird">
 
 
@@ -127,6 +82,13 @@
         &copy; 2024 L.S.D @dÆV_earn All rights reserved.
     </footer>
 
-    <script src="script.js"></script>
+
+
+
+    <script>
+        // Clear session storage when the error page is loaded
+        sessionStorage.removeItem('redirected');
+    </script>
+    
 </body>
 </html>
