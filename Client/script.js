@@ -21,6 +21,30 @@ let highScorer = 'None';
 
 
 
+
+
+
+
+
+
+
+
+// const isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// if (isMobileOrTablet) {
+//     alert("GAME is only available on Desktop and Laptops.");
+//     return; // Stop further script execution
+// }
+
+
+const isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if (isMobileOrTablet) {
+    window.location.href = 'mobile.html'; // Redirect to the mobile error page
+    return; // Stop further script execution
+}
+
+
+
+
 // fetch('http://localhost:3000/high-scores')
 fetch('https://lsd-r8ez.onrender.com/high-scores')
     .then(response => response.json())
