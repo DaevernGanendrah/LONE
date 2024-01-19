@@ -181,8 +181,16 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from the 'Client' directory
-// Ensure this directory structure is correct in your project
-app.use(express.static(path.join(__dirname, 'Client')));
+// // Ensure this directory structure is correct in your project
+// app.use(express.static(path.join(__dirname, 'Client')));
+
+// Serve static files from the 'Client' directory
+app.use(express.static(path.join(__dirname, '..', 'Client')));
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
+// });
+
 
 // MongoDB URI
 const MONGO_URI = process.env.MONGO_URI;
@@ -196,13 +204,18 @@ mongoose.connect(MONGO_URI)
 
 // Root endpoint to serve the main page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Client', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
 });
 
-// Fallback route for SPA (if needed)
+// // Fallback route for SPA (if needed)
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'Client', 'index.html'));
+// });
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Client', 'index.html'));
-});
+    res.sendFile(path.join(__dirname, '..', 'Client', 'index.html'));
+  });
+  
 
 // Set the port dynamically from the environment or default to 3000
 const PORT = process.env.PORT || 3000;
