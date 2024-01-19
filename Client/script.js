@@ -19,7 +19,10 @@ let highScore = 0;
 let highScorer = 'None';
 
 
-fetch('http://localhost:3000/high-scores')
+
+
+// fetch('http://localhost:3000/high-scores')
+fetch('https://lsd-r8ez.onrender.com//high-scores')
     .then(response => response.json())
     .then(data => {
         if (data.length > 0) {
@@ -333,7 +336,11 @@ function gameOver() {
         const currentUsername = localStorage.getItem('currentUsername');
         if (score > highScore) {
 
-            fetch('http://localhost:3000/submit-score', {
+
+            
+
+            // fetch('http://localhost:3000/submit-score', {
+            fetch('https://lsd-r8ez.onrender.com/submit-score', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -355,8 +362,11 @@ function gameOver() {
 
 document.getElementById('scoreboardButton').addEventListener('click', displayScoreboard);
 
+
+
 function displayScoreboard() {
-    fetch('http://localhost:3000/high-scores')
+    // fetch('http://localhost:3000/high-scores')
+    fetch('https://lsd-r8ez.onrender.com//high-scores')
         .then(response => response.json())
         .then(scores => {
 
