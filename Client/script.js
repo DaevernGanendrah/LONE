@@ -22,7 +22,7 @@ let highScorer = 'None';
 
 
 // fetch('http://localhost:3000/high-scores')
-fetch('https://lsd-r8ez.onrender.com//high-scores')
+fetch('https://lsd-r8ez.onrender.com/high-scores')
     .then(response => response.json())
     .then(data => {
         if (data.length > 0) {
@@ -366,7 +366,7 @@ document.getElementById('scoreboardButton').addEventListener('click', displaySco
 
 function displayScoreboard() {
     // fetch('http://localhost:3000/high-scores')
-    fetch('https://lsd-r8ez.onrender.com//high-scores')
+    fetch('https://lsd-r8ez.onrender.com/high-scores')
         .then(response => response.json())
         .then(scores => {
 
