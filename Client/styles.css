@@ -1,0 +1,330 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: #000000; 
+}
+
+.game-container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    background-image: url('images /hy.png'); 
+    background-size: 75%; 
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+
+.bird {
+    width: 15%; 
+    height: 250px; 
+    object-fit: contain; 
+    position: absolute;
+    bottom: 50%;
+    left:15%;
+}
+
+
+.beam {
+    position: absolute;
+    width: 2%; 
+    height: 3%; 
+    background-image: url('images /bud1.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.second-beam {
+    background-image: url('images /bo2.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 4.5%; 
+    height: 12%; 
+}
+
+
+.third-beam {
+    background-image: url('images /j2.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 3%; 
+    height: 1.5%; 
+}
+
+.asteroid {
+    position: absolute;
+    background-image: url('images /yy.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.topObstacle, .bottomObstacle {
+    position: absolute;
+    width: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    z-index: 10;
+}
+
+
+/* Shared styles for the game-over-text and score */
+.pixel-text {
+    font-family: monospace,;
+    color: #FF00FF; 
+    text-shadow:
+        3px 3px 0 rgb(155, 34, 34),  
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,   
+        -1px 1px 0 #000,   
+        1px 1px 0 #000;    
+    -webkit-text-stroke: 1px black; 
+    font-size: 70px; 
+}
+
+.game-over-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+
+.game-over-text, .score {
+    font-family: monospace;
+    color: #ee26d7; 
+    text-shadow:
+        3px 3px 0 #000, 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,   
+        -1px 1px 0 #000,  
+        1px 1px 0 #000;    
+    -webkit-text-stroke: 1px black; 
+    font-size: 35px; 
+    font-style: bold;
+}
+
+
+.game-over-text {
+    font-family: 'Press Start 2P';
+    color: #FF00FF; 
+    text-shadow:
+        3px 3px 0 #000,  
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,   
+        -1px 1px 0 #000,   
+        1px 1px 0 #000;    
+    -webkit-text-stroke: 1px black; 
+    font-size: 150px; 
+}
+
+
+.score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+
+.restart-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 10px;
+    font-family: monospace;
+    cursor: pointer;
+    background-color: #00ff00;
+    color: black;
+    border: 3px solid #ff0000;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bolder;
+}
+
+.restart-button:hover {
+    background-color: #ff0000;
+    color: #fff;
+    border-color: #00ff00;
+}
+
+.high-score-display {
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 20px;
+    z-index: 10;
+    font-family: 'Press Start 2P';
+    background-color: #000;
+}
+
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    width:55%;
+}
+
+.login-title {
+    margin-bottom: 15px;
+}
+
+.username-input, .start-button {
+    font-family: 'Press Start 2P';
+    font-size: 16px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.username-input {
+    width:300px;
+}
+
+.start-button {
+    background-color: #00ff00;
+    color: black;
+    border: 3px solid #ff0000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.start-button:hover {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+
+.pixel-text {
+    font-family: monospace;
+    color: #ff00a2;
+    text-shadow:
+        3px 3px 0 rgb(157, 81, 151),
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    -webkit-text-stroke: 1px black;
+    font-size: 55px;
+}
+
+.scoreboard-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 10px;
+    font-family: monospace;
+    cursor: pointer;
+    background-color: #00ff00;
+    color: black;
+    border: 3px solid #ff0000;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, color 0.3s;
+    font-weight:bolder;
+}
+
+.scoreboard-button:hover {
+    background-color: #ff0000;
+    color: #fff;
+    border-color: #00ff00;
+}
+
+.scoreboard-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    color: lime;
+    border: 3px solid lime;
+    display: none; 
+    width: 100%;
+}
+
+.scoreboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scoreboard-table th,
+.scoreboard-table td {
+    border: 1px solid lime;
+    padding: 35px;
+    text-align: left;
+    font-size: 35px;
+}
+
+
+.close-scoreboard-button {
+    font-family: monospace;
+    cursor: pointer;
+    background-color: lime;
+    float : left;
+
+}
+
+
+.command-text{
+    font-size: 20px;
+    text-align: left;
+    padding: 20px;
+}
+
+
+.footer {
+    text-align: right;
+    /* padding: 10px; */
+    background-color: rgb(0, 0, 0);
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: monospace;
+}
+
+.gy{
+    text-align: center
+}
+
+.ly{
+    text-align: center;
+    font-family : monospace;
+    font-size: 25px;
+}
+
+
+.py{
+    text-align: center;
+    font-family : monospace;
+    font-size: 15px;
+}
+
+.rotated-image {
+    transform: rotate(90deg);
+}
