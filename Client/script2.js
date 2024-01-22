@@ -15,32 +15,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const highScoreDisplay = document.getElementById('highScoreDisplay');
     let highScore = 0;
     let highScorer = 'None';
+
+
+
+
+    let currentTheme = 'JUPITER'; // Default theme
+    let asteroidImages = {
+    'JUPITER': {
+        base: 'images /sa',
+        collision: "url('images /ca1.png')",
+        count: 6 // Number of asteroid images for JUPITER theme
+    },
+    'BLACKHOLESUN': {
+        base: 'images /cbhs',
+        collision: "url('images /bhsr1.png')",
+        count: 1 // Number of asteroid images for BLACKHOLESUN theme
+    }
+};
+
+
     const usernameInput = document.getElementById('usernameInput');
     const startButton = document.getElementById('startButton');
     const loginContainer = document.getElementById('loginContainer');
+    const themeContainer = document.getElementById('themeContainer');
+    const titleContainer = document.getElementById('titleContainer');
 
+    
 
+    const jupiterButton = document.getElementById('jupiterButton');
+    const blackholeSunButton = document.getElementById('blackholeSunButton');
+    const themeSelection = document.getElementById('themeSelection');
 
-
-
-
-
-    function handleButtonTap(event) {
-        event.preventDefault();
-        // Call your shooting function based on the button tapped
-        if (event.target.id === 'shootButtonQ') {
-            shootBeam();
-        } else if (event.target.id === 'shootButtonW') {
-            shootSecondBeam();
-        } else if (event.target.id === 'shootButtonE') {
-            shootThirdBeam();
+    function setTheme(theme) {
+        currentTheme = theme;
+    
+        if (theme === 'JUPITER') {
+            gameContainer.style.backgroundImage = "url('images /hy.png')";
+            asteroidImageBase = 'images /sa';
+            asteroidCollisionImage = "url('images /ca1.png')";
+        } else if (theme === 'BLACKHOLESUN') {
+            gameContainer.style.backgroundImage = "url('images /bhs.png')";
+            asteroidImageBase = 'images /cbhs1';
+            asteroidCollisionImage = "url('images /bhsr1.png')";
         }
+    
+        // Hide theme selection and title container, show login container
+        themeSelection.style.display = 'none';
+        titleContainer.style.display = 'none';
+        loginContainer.style.display = 'block';
     }
 
-    // Adding touchend event listeners to buttons
-    document.getElementById('shootButtonQ').addEventListener('touchend', handleButtonTap);
-    document.getElementById('shootButtonW').addEventListener('touchend', handleButtonTap);
-    document.getElementById('shootButtonE').addEventListener('touchend', handleButtonTap);
+
+
+    // Event listeners for theme buttons
+    jupiterButton.addEventListener('click', () => setTheme('JUPITER'));
+    blackholeSunButton.addEventListener('click', () => setTheme('BLACKHOLESUN'));
+
+
 
 
 
@@ -50,22 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile controls
     const isMobileOrTablet = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     const mobileControls = document.getElementById('mobileControls');
-
-    // if (isMobileOrTablet) {
-    //     mobileControls.style.display = 'block';
-
-    //     gameContainer.addEventListener('touchstart', function(event) {
-    //         if (event.target.tagName !== 'BUTTON') {
-    //             jump();
-    //         }
-    //     }, false);
-
-    //     document.getElementById('shootButtonQ').addEventListener('touchstart', shootBeam);
-    //     document.getElementById('shootButtonW').addEventListener('touchstart', shootSecondBeam);
-    //     document.getElementById('shootButtonE').addEventListener('touchstart', shootThirdBeam);
-    // }
-
-
 
         // Mobile controls touch event listeners
         if (isMobileOrTablet) {
@@ -92,21 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
         loginContainer.style.display = 'none';
     }
 
+
+
+    function hideThemeContainer() {
+        themeContainer.style.display = 'none';
+    }
+
+    function hideTitleContainer() {
+        titleContainer.style.display = 'none';
+
+        
+    }
+
     restartButton.disabled = true;
-
-    // startButton.addEventListener('click', () => {
-    //     const username = usernameInput.value.trim();
-    //     if (username) {
-    //         localStorage.setItem('currentUsername', username);
-    //         gameStarted = true;
-    //         hideLoginContainer();
-    //         startGame();
-    //         restartButton.disabled = false; 
-    //     } else {
-    //         alert('Please enter a username to start the game');
-    //     }
-    // });
-
 
 
     let controlsEnabled = false; // Flag to enable or disable game controls
@@ -118,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
             gameStarted = true;
             controlsEnabled = true; // Enable controls after starting the game
             hideLoginContainer();
+            hideThemeContainer()
+            hideTitleContainer()
             startGame();
             restartButton.disabled = false;
         } else {
@@ -184,10 +199,11 @@ function shootBeam() {
         beam.style.left = beamLeft + 'px';
 
         document.querySelectorAll('.asteroid').forEach(asteroid => {
+
             if (checkCollision(beam, asteroid)) {
                 if (!asteroid.isHit) { 
                     asteroid.isHit = true; 
-                    asteroid.style.backgroundImage = "url('images /ca1.png')";
+                    asteroid.style.backgroundImage = asteroidImages[currentTheme].collision;
                   
 
                     setTimeout(() => {
@@ -237,11 +253,13 @@ function shootSecondBeam() {
         beam.style.left = beamLeft + 'px';
 
         document.querySelectorAll('.asteroid').forEach(asteroid => {
+
             if (checkCollision(beam, asteroid)) {
                 if (!asteroid.isHit) { 
                     asteroid.isHit = true; 
-                    asteroid.style.backgroundImage = "url('images /ca1.png')";
-                  
+                    asteroid.style.backgroundImage = asteroidImages[currentTheme].collision;
+
+
 
                     setTimeout(() => {
                         gameContainer.removeChild(asteroid);
@@ -288,7 +306,7 @@ function shootThirdBeam() {
             if (checkCollision(beam, asteroid)) {
                 if (!asteroid.isHit) { 
                     asteroid.isHit = true; 
-                    asteroid.style.backgroundImage = "url('images /ca1.png')";
+                    asteroid.style.backgroundImage = asteroidImages[currentTheme].collision;
                   
 
                     setTimeout(() => {
@@ -317,21 +335,16 @@ function shootThirdBeam() {
 
 function generateAsteroid() {
 const asteroid = document.createElement('div');
+
 asteroid.classList.add('asteroid');
 gameContainer.appendChild(asteroid);
 asteroid.isHit = false;
 
+const themeImages = asteroidImages[currentTheme];
+const asteroidImageIndex = Math.floor(Math.random() * themeImages.count) + 1;
+asteroid.style.backgroundImage = `url('${themeImages.base}${asteroidImageIndex}.png')`;
 
 
-// Add touchend event listener to prevent double-tap zoom
-asteroid.addEventListener('touchend', function(event) {
-    event.preventDefault();
-    // Any additional logic when the asteroid is tapped
-});
-
-
-const asteroidImageIndex = Math.floor(Math.random() * 6) + 1;
-asteroid.style.backgroundImage = `url('images /sa${asteroidImageIndex}.png')`;
 
 let asteroidLeft = gameContainer.clientWidth;
 let asteroidBottom = Math.random() * (window.innerHeight - 30);
@@ -344,6 +357,7 @@ asteroid.style.height = `${size}px`;
 asteroid.hitsRemaining = Math.ceil(size / 10);
 
 let asteroidSpeed = 2 + Math.floor(score / 3); 
+
 
 function moveAsteroid() {
     asteroidLeft -= asteroidSpeed; 
@@ -378,8 +392,6 @@ return (
 
 }
 
-
-
 function gameOver() {
 if (!isGameOver) {
     clearInterval(gameTimerId);
@@ -397,8 +409,8 @@ if (!isGameOver) {
 
         
 
-        // fetch('http://localhost:3000/submit-score', {
-        fetch('https://lsd-r8ez.onrender.com/submit-score', {
+        fetch('http://localhost:3000/submit-score', {
+        // fetch('https://lsd-r8ez.onrender.com/submit-score', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -423,8 +435,8 @@ document.getElementById('scoreboardButton').addEventListener('click', displaySco
 
 
 function displayScoreboard() {
-// fetch('http://localhost:3000/high-scores')
-fetch('https://lsd-r8ez.onrender.com/high-scores')
+fetch('http://localhost:3000/high-scores')
+// fetch('https://lsd-r8ez.onrender.com/high-scores')
     .then(response => response.json())
     .then(scores => {
 
