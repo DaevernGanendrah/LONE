@@ -21,6 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
+
+    function handleButtonTap(event) {
+        event.preventDefault();
+        // Call your shooting function based on the button tapped
+        if (event.target.id === 'shootButtonQ') {
+            shootBeam();
+        } else if (event.target.id === 'shootButtonW') {
+            shootSecondBeam();
+        } else if (event.target.id === 'shootButtonE') {
+            shootThirdBeam();
+        }
+    }
+
+    // Adding touchend event listeners to buttons
+    document.getElementById('shootButtonQ').addEventListener('touchend', handleButtonTap);
+    document.getElementById('shootButtonW').addEventListener('touchend', handleButtonTap);
+    document.getElementById('shootButtonE').addEventListener('touchend', handleButtonTap);
+
+
+
     restartButton.style.display = 'none';
     scoreboardButton.style.display = 'none';
 
