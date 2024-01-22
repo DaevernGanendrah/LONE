@@ -371,6 +371,8 @@ asteroid.isHit = false;
 // Add touchend event listener to prevent double-tap zoom
 asteroid.addEventListener('touchend', function(event) {
 event.preventDefault();
+});
+
 
 const themeImages = asteroidImages[currentTheme];
 const asteroidImageIndex = Math.floor(Math.random() * themeImages.count) + 1;
