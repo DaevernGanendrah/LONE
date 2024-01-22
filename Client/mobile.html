@@ -104,12 +104,12 @@
 
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>L.S.D Game</title>
-    <link rel="stylesheet" href="styles2.css"> <!-- Make sure the path to your CSS file is correct -->
+    <link rel="stylesheet" href="styles2.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -163,14 +163,150 @@
 
          </div>
 
-                 <!-- Mobile Controls -->
+                 <!-- Mobile Controls 
         <!-- <div id="mobileControls" style="display: flex;">
             <button id="shootButtonQ">Q</button>
             <button id="shootButtonW">W</button>
             <button id="shootButtonE">E</button>
             <!-- <button id="jumpButton">Jump</button>
-        </div> -->
+        </div> 
 
+
+        <div id="mobileControls" style="display: flex;">
+            <button id="shootButtonQ">
+                <img src="images /bud1.png" alt="Q">
+            </button>
+            <button id="shootButtonW">
+                <img src="images /bo2.png" alt="W">
+            </button>
+            <button id="shootButtonE">
+                <img src="images /j2.png" alt="E">
+            </button>
+            <!-- <button id="jumpButton">Jump</button> 
+        </div>
+
+         <button id="restartButton" class="restart-button">RSTRT</button>
+         <button id="scoreboardButton" class="scoreboard-button">GOATS</button>
+        </div>
+
+
+
+
+    <footer class="footer">
+        &copy; 2024 L.S.D @dÆV_earn All rights reserved.
+    </footer>
+
+    <script>
+        // Clear session storage when the error page is loaded
+        sessionStorage.removeItem('redirected');
+    </script>
+    <script src="script2.js"></script> <!-- Make sure the path to your JS file is correct 
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L.S.D Game</title>
+    <link rel="stylesheet" href="styles2.css"> <!-- Make sure the path to your CSS file is correct -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+    <div id="themeContainer"  class="ThemeContainer">
+        <div class="pixell-text" id="titleContainer">
+        <h2 class="gy"> PICK A PLACE TO PLAY </h2>
+        <div id="themeSelection" class="theme-selection">
+            <button id="jupiterButton" class="theme-button">JUPITER</button>
+            <button id="blackholeSunButton" class="theme-button">BLACKHOLESUN</button>
+        </div>
+        </div>
+        </div>
+
+
+  <div id="loginContainer" class="login-container">
+    <div class="command-text pixel-text">
+        <h1 class="gy">L.S.D.</h1>
+        <h1 class="gy">L0NES0ME . SPACE . D0GG</h1><br>
+
+        <h2>How To Play?</h2>
+        <h3>1. THROW "EXPLOSIVE" BUDS, BONGS & JOINTS </h3>
+        <h3>2. DONT GET HIT</h3><br>
+
+        <h2>Commands :</h2>
+        <h3> - "TAP" Screen = "Bounce" </h3>
+        <h3> - <img src="images /bud1.png" alt="Q" style="width: 20px; height: 20px;"> = "BUD THROW" </h3>
+        <h3> - <img src="images /bo2.png" alt="W" style="width: 20px; height: 20px;"> = "BONG THROW" </h3>
+        <h3> - <img src="images /j2.png" alt="E" style="width: 20px; height: 20px;"> = "J THROW" </h3><br>
+    </div>
+    <input type="text" id="usernameInput" class="username-input pixel-text" placeholder="Username" />
+    <button id="startButton" class="start-button pixel-text">START</button>
+</div>
+ 
+
+     </div>
+
+
+    <div id="gameContainer" class="game-container">
+
+
+
+
+        <img id="bird" class="bird" src="images /hd1.png" alt="Bird">
+        <div class="score" id="score">Score: 0</div>
+    
+        <div id="gameOverMessage" class="game-over-container">
+            <span class="game-over-text pixel-text">L.S.D DIED!!! YOU SUCK, FUCK 0FF LOSER.</span>
+          
+
+
+            <div id="scoreboardContainer" class="scoreboard-container" style="display: none;">
+                <button id="closeScoreboardButton" class="close-scoreboard-button">X</button>
+             <h5 class="ly">VINI VIDI VICI</h5>
+             <p class="py">THE BEST WILL BE BLESSED</p>
+                <table id="scoreboardTable" class="scoreboard-table pixel-text">
+
+                    <tr>
+                        <th>L . S . D </th>
+                        <th>Score</th>
+                    </tr>
+                </table>
+            </div>
+
+
+         </div>
 
         <div id="mobileControls" style="display: flex;">
             <button id="shootButtonQ">
@@ -188,8 +324,6 @@
          <button id="restartButton" class="restart-button">RSTRT</button>
          <button id="scoreboardButton" class="scoreboard-button">GOATS</button>
         </div>
-
-
 
 
     <footer class="footer">
