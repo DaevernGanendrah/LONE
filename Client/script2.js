@@ -321,6 +321,15 @@ asteroid.classList.add('asteroid');
 gameContainer.appendChild(asteroid);
 asteroid.isHit = false;
 
+
+
+// Add touchend event listener to prevent double-tap zoom
+asteroid.addEventListener('touchend', function(event) {
+    event.preventDefault();
+    // Any additional logic when the asteroid is tapped
+});
+
+
 const asteroidImageIndex = Math.floor(Math.random() * 6) + 1;
 asteroid.style.backgroundImage = `url('images /sa${asteroidImageIndex}.png')`;
 
