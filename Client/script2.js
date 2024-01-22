@@ -46,6 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const blackholeSunButton = document.getElementById('blackholeSunButton');
     const themeSelection = document.getElementById('themeSelection');
 
+
+
+
+
+
+
+    function handleButtonTap(event) {
+        event.preventDefault();
+        // Call your shooting function based on the button tapped
+        if (event.target.id === 'shootButtonQ') {
+            shootBeam();
+        } else if (event.target.id === 'shootButtonW') {
+            shootSecondBeam();
+        } else if (event.target.id === 'shootButtonE') {
+            shootThirdBeam();
+        }
+    }
+
+    // Adding touchend event listeners to buttons
+    document.getElementById('shootButtonQ').addEventListener('touchend', handleButtonTap);
+    document.getElementById('shootButtonW').addEventListener('touchend', handleButtonTap);
+    document.getElementById('shootButtonE').addEventListener('touchend', handleButtonTap);
+
+
+    
+
     function setTheme(theme) {
         currentTheme = theme;
     
