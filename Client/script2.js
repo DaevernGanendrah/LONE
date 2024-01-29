@@ -443,8 +443,8 @@ if (!isGameOver) {
 
         
 
-        fetch('http://localhost:3000/submit-score', {
-        // fetch('https://lsd-r8ez.onrender.com/submit-score', {
+        // fetch('http://localhost:3000/submit-score', {
+        fetch('https://lsd-r8ez.onrender.com/submit-score', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -469,8 +469,8 @@ document.getElementById('scoreboardButton').addEventListener('click', displaySco
 
 
 function displayScoreboard() {
-fetch('http://localhost:3000/high-scores')
-// fetch('https://lsd-r8ez.onrender.com/high-scores')
+// fetch('http://localhost:3000/high-scores')
+fetch('https://lsd-r8ez.onrender.com/high-scores')
     .then(response => response.json())
     .then(scores => {
 
